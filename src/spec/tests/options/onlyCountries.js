@@ -17,18 +17,12 @@ describe("onlyCountries option:", function() {
 
   describe("init plugin with onlyCountries set to japan, china and korea", function() {
 
-    var chinaCountryCode = "cn";
-
     beforeEach(function() {
-      // China and Japan (note that none of the default preferredCountries are included here, so wont be in the list)
-      onlyCountries = ['jp', chinaCountryCode, 'kr'];
+      //* China and Japan (note that none of the default preferredCountries are included here, so wont be in the list).
+      onlyCountries = ["jp", "cn", "kr"];
       iti = window.intlTelInput(input[0], {
         onlyCountries: onlyCountries,
       });
-    });
-
-    it("defaults to the first onlyCountries alphabetically", function() {
-      expect(getSelectedFlagElement()).toHaveClass(`iti__${chinaCountryCode}`);
     });
 
     it("has the right number of list items", function() {
@@ -50,7 +44,8 @@ describe("onlyCountries option:", function() {
     it("entering +7 defaults to the top priority country (Russia)", function() {
       input.val("+");
       triggerKeyOnInput("7");
-      expect(getSelectedFlagElement()).toHaveClass("iti__ru");
+
+      expect(getSelectedCountryElement()).toHaveClass("iti__ru");
     });
 
   });
@@ -64,14 +59,14 @@ describe("onlyCountries option:", function() {
 
     beforeEach(function() {
       input2 = $("<input>").wrap("div");
-      // japan
+      //* Japan
       iti = window.intlTelInput(input[0], {
-        onlyCountries: ['jp'],
+        onlyCountries: ["jp"],
         nationalMode: false,
       });
-      // korea
+      //* Korea
       iti2 = window.intlTelInput(input2[0], {
-        onlyCountries: ['kr'],
+        onlyCountries: ["kr"],
         nationalMode: false,
       });
       $("body").append(getParentElement(input)).append(getParentElement(input2));
@@ -83,9 +78,11 @@ describe("onlyCountries option:", function() {
       input2 = iti2 = null;
     });
 
-    it("they both display their respective only country option as the selected flag", function() {
-      expect(getSelectedFlagElement()).toHaveClass("iti__jp");
-      expect(getSelectedFlagElement(input2)).toHaveClass("iti__kr");
+    it("they both only have 1 country listed, which is the correct one", function() {
+      expect(getListLength()).toEqual(1);
+      expect(getListElement().find("li.iti__country:first .iti__flag")).toHaveClass("iti__jp");
+      expect(getListLength(input2)).toEqual(1);
+      expect(getListElement(input2).find("li.iti__country:first .iti__flag")).toHaveClass("iti__kr");
     });
 
   });

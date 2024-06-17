@@ -4,7 +4,7 @@ describe("dropdownContainer:", function() {
 
   beforeEach(function() {
     intlSetup();
-    // insert input into the DOM so our visibility tests will work
+    //* Insert input into the DOM so our visibility tests will work.
     input = $("<input>").appendTo("body");
   });
 
@@ -27,7 +27,7 @@ describe("dropdownContainer:", function() {
     describe("clicking the selected flag", function() {
 
       beforeEach(function() {
-        getSelectedFlagContainer().click();
+        getSelectedCountryContainer().click();
       });
 
       it("shows the dropdown", function() {
@@ -36,6 +36,7 @@ describe("dropdownContainer:", function() {
 
       it("clicking-off removes the markup again", function() {
         $("body").click();
+
         expect(getListElement()).not.toBeVisible();
       });
 
@@ -51,14 +52,14 @@ describe("dropdownContainer:", function() {
       });
     });
 
-    it("doesnt immediately add the markup to the DOM", function() {
+    it("doesn't immediately add the markup to the DOM", function() {
       expect($(".iti--container")).not.toExist();
     });
 
     describe("triggering the dropdown", function() {
 
       beforeEach(function() {
-        getSelectedFlagContainer().click();
+        getSelectedCountryContainer().click();
       });
 
       it("adds the markup to that element and makes it visible in the document", function() {
@@ -67,11 +68,13 @@ describe("dropdownContainer:", function() {
 
       it("selecting a country removes the markup again", function() {
         $("body>.iti--container").find("li[data-country-code='gb']").click();
+
         expect($("body>.iti--container")).not.toExist();
       });
 
       it("clicking-off removes the markup again", function() {
         $("body").click();
+
         expect($("body>.iti--container")).not.toExist();
       });
 

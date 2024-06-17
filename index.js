@@ -1,4 +1,2 @@
-/**
- * Exposing intl-tel-input as a component
- */
+/* global module */
 module.exports = require("./build/js/intlTelInput");

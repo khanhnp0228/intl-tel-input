@@ -14,11 +14,11 @@ describe("destroy: init plugin to test public method destroy", function() {
 
   it("adds the markup", function() {
     expect(getParentElement()).toHaveClass("iti");
-    expect(getSelectedFlagContainer()).toExist();
+    expect(getSelectedCountryContainer()).toExist();
     expect(getListElement()).toExist();
   });
 
-  // this is currently impossible in pure JS, until getEventListeners becomes standard
+  //* This is currently impossible in pure JS, until getEventListeners becomes standard.
   // it("binds the event listeners", function() {
   //   var listeners = getEventListeners(input[0]);
   //   expect("cut" in listeners).toBeTruthy();
@@ -35,11 +35,11 @@ describe("destroy: init plugin to test public method destroy", function() {
 
     it("removes the markup", function() {
       expect(getParentElement()).not.toHaveClass("iti");
-      expect(getSelectedFlagContainer()).not.toExist();
+      expect(getSelectedCountryContainer()).not.toExist();
       expect(getListElement()).not.toExist();
     });
 
-    // this is currently impossible in pure JS, until getEventListeners becomes standard
+    //* This is currently impossible in pure JS, until getEventListeners becomes standard.
     // it("unbinds the event listeners", function() {
     //   var listeners = getEventListeners(input[0]);
     //   expect(listeners).toBeUndefined();
@@ -52,14 +52,13 @@ describe("destroy: init plugin to test public method destroy", function() {
 
 
 
-describe("destroy: init plugin with nationalMode=false and autoHideDialCode=true", function() {
+describe("destroy: init plugin with nationalMode=false", function() {
 
   beforeEach(function() {
     intlSetup();
     input = $("<input>").wrap("div");
     iti = window.intlTelInput(input[0], {
       nationalMode: false,
-      autoHideDialCode: true
     });
   });
 
@@ -67,7 +66,7 @@ describe("destroy: init plugin with nationalMode=false and autoHideDialCode=true
     intlTeardown();
   });
 
-  // this is currently impossible in pure JS, until getEventListeners becomes standard
+  //* This is currently impossible in pure JS, until getEventListeners becomes standard.
   // it("binds the events listeners", function() {
   //   var listeners = getEventListeners(input[0]);
   //   expect("blur" in listeners).toBeTruthy();
@@ -82,7 +81,7 @@ describe("destroy: init plugin with nationalMode=false and autoHideDialCode=true
       input.intlTelInput("destroy");
     });
 
-    // this is currently impossible in pure JS, until getEventListeners becomes standard
+    //* this is currently impossible in pure JS, until getEventListeners becomes standard.
     // it("unbinds the event listeners", function() {
     //   var listeners = getEventListeners(input[0]);
     //   expect(listeners).toBeUndefined();

@@ -1,47 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>International Telephone Input</title>
+    <link rel="stylesheet" href="build/css/intlTelInput.css" />
+    <link rel="stylesheet" href="build/css/demo.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>International Telephone Input</title>
-  <link rel="stylesheet" href="build/css/intlTelInput.css">
-  <link rel="stylesheet" href="build/css/demo.css">
-</head>
+  <body>
+    <h1>International Telephone Input</h1>
+    <form>
+      <input id="phone" name="phone" type="tel" value="" />
+      <button class="button" type="submit">Submit</button>
+    </form>
 
-<body>
-  <h1>International Telephone Input</h1>
-  <form>
-    <input id="phone" name="phone" type="tel">
-    <button type="submit">Submit</button>
-  </form>
-
-  <script src="build/js/intlTelInput.js"></script>
-  <script>
-    var input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-      // allowDropdown: false,
-      // autoHideDialCode: false,
-      // autoPlaceholder: "off",
-      // dropdownContainer: document.body,
-      // excludeCountries: ["us"],
-      // formatOnDisplay: false,
-      // geoIpLookup: function(callback) {
-      //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-      //     var countryCode = (resp && resp.country) ? resp.country : "";
-      //     callback(countryCode);
-      //   });
-      // },
-      // hiddenInput: "full_number",
-      // initialCountry: "auto",
-      // localizedCountries: { 'de': 'Deutschland' },
-      // nationalMode: false,
-      // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-      // placeholderNumberType: "MOBILE",
-      // preferredCountries: ['cn', 'jp'],
-      // separateDialCode: true,
-      utilsScript: "build/js/utils.js",
-    });
-  </script>
-</body>
-
+    <script src="build/js/intlTelInputWithUtils.js"></script>
+    <script>
+      const input = document.querySelector("#phone");
+      const iti = window.intlTelInput(input, {
+        // allowDropdown: false,
+        // autoPlaceholder: "off",
+        // containerClass: "test",
+        // countryOrder: ["jp", "kr"],
+        // customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+        //   return "e.g. " + selectedCountryPlaceholder;
+        // },
+        // dropdownContainer: document.querySelector('#custom-container'),
+        // excludeCountries: ["us"],
+        // fixDropdownWidth: false,
+        // formatAsYouType: false,
+        // formatOnDisplay: false,
+        // geoIpLookup: function(callback) {
+        //   fetch("https://ipapi.co/json")
+        //     .then(function(res) { return res.json(); })
+        //     .then(function(data) { callback(data.country_code); })
+        //     .catch(function() { callback(); });
+        // },
+        // hiddenInput: () => "phone_full",
+        // i18n: { 'de': 'Deutschland' },
+        initialCountry: "us",
+        // nationalMode: false,
+        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+        // placeholderNumberType: "MOBILE",
+        // showFlags: false,
+        // separateDialCode: true,
+        // strictMode: true,
+        // useFullscreenPopup: true,
+        // utilsScript: "/build/js/utils.js", // leading slash (and http-server) required for this to work in chrome
+        // validationNumberType: null,
+      });
+      window.iti = iti; // useful for testing
+    </script>
+  </body>
 </html>

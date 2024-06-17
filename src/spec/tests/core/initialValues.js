@@ -24,15 +24,11 @@ describe("initial values:", function() {
     });
 
     it("has the right number of list items", function() {
-      expect(getListLength()).toEqual(totalCountries + defaultPreferredCountries);
-      expect(getPreferredCountriesLength()).toEqual(defaultPreferredCountries);
-      // only 1 active list item
-      expect(getActiveListItem().length).toEqual(1);
+      expect(getListLength()).toEqual(totalCountries);
     });
 
-    it("sets the state correctly: selected flag and active list item", function() {
-      expect(getSelectedFlagElement()).toHaveClass("iti__us");
-      expect(getActiveListItem().attr("data-country-code")).toEqual("us");
+    it("sets the state correctly: no selected flag", function() {
+      expect(getSelectedCountryElement()).toHaveClass("iti__globe");
     });
 
   });
@@ -46,9 +42,8 @@ describe("initial values:", function() {
       iti = window.intlTelInput(input[0]);
     });
 
-    it("sets the state correctly: selected flag and active list item", function() {
-      expect(getSelectedFlagElement()).toHaveClass("iti__gb");
-      expect(getActiveListItem().attr("data-country-code")).toEqual("gb");
+    it("sets the state correctly: selected flag", function() {
+      expect(getSelectedCountryElement()).toHaveClass("iti__gb");
     });
 
   });
@@ -68,7 +63,7 @@ describe("initial values:", function() {
       });
 
       it("defaults to US flag", function() {
-        expect(getSelectedFlagElement()).toHaveClass("iti__us");
+        expect(getSelectedCountryElement()).toHaveClass("iti__us");
       });
 
     });
@@ -79,12 +74,12 @@ describe("initial values:", function() {
 
       beforeEach(function() {
         iti = window.intlTelInput(input[0], {
-          initialCountry: initialCountry
+          initialCountry: initialCountry,
         });
       });
 
       it("defaults to the initialCountry flag", function() {
-        expect(getSelectedFlagElement()).toHaveClass(`iti__${initialCountry}`);
+        expect(getSelectedCountryElement()).toHaveClass(`iti__${initialCountry}`);
       });
 
     });
@@ -100,9 +95,9 @@ describe("initial values:", function() {
       iti = window.intlTelInput(input[0]);
     });
 
-    // issue 520
+    //* Issue 520.
     it("sets the selected flag correctly", function() {
-      expect(getSelectedFlagElement()).toHaveClass("iti__ck");
+      expect(getSelectedCountryElement()).toHaveClass("iti__ck");
     });
 
   });
@@ -116,9 +111,8 @@ describe("initial values:", function() {
       iti = window.intlTelInput(input[0]);
     });
 
-    it("does not set the selected flag or the active list item", function() {
-      expect(getSelectedFlagElement().attr("class")).toBe("iti__flag");
-      expect(getActiveListItem().length).toEqual(0);
+    it("does not set the selected flag", function() {
+      expect(getSelectedCountryElement().attr("class")).toBe("iti__flag iti__globe");
     });
 
   });
@@ -132,9 +126,8 @@ describe("initial values:", function() {
       iti = window.intlTelInput(input[0]);
     });
 
-    it("does not set the selected flag or the active list item", function() {
-      expect(getSelectedFlagElement().attr("class")).toBe("iti__flag");
-      expect(getActiveListItem().length).toEqual(0);
+    it("does not set the selected flag", function() {
+      expect(getSelectedCountryElement().attr("class")).toBe("iti__flag iti__globe");
     });
 
   });
